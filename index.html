@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <i class="fa-brands fa-windows item"></i>
+        <div class="search-box">
+            <input type="text" class="search-btn" placeholder="搜索">
+        </div>
+        <i class="fa-solid fa-magnifying-glass item"></i>
+    </div>
+    <div class="timeBox">111</div>
+    <script src="https://kit.fontawesome.com/f23451c27c.js" crossorigin="anonymous"></script>
+    <script>
+        var searchBtn = document.querySelector('.search-btn')
+        var style1 = document.createElement('style')
+        var searchBox = document.querySelector('.search-box')
+        var timeBox = document.querySelector('.timeBox')
+        searchBtn.addEventListener('focus', function () {
+            style1.innerHTML = "body::before{ filter: blur(20px); transform: scale(1.01);}";
+            document.head.appendChild(style1);
+            searchBox.style.width = '440px'
+        })
+        searchBtn.addEventListener('blur', function () {
+            document.head.removeChild(style1);
+            searchBox.style.width = ""
+        })
+
+        setInterval(function () {
+            var date = new Date()
+            let hh = padZero(date.getHours())
+            let mm =padZero( date.getMinutes())
+            let ss = padZero(date.getSeconds())
+            timeBox.innerText = hh + ':' + mm + ':' + ss
+        }, 1000)
+
+        function padZero(n) {
+            return n > 9 ? n : '0' + n
+        }
+    </script>
+</body>
+
+</html>
